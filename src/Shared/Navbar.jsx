@@ -16,9 +16,18 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-base-100">
+      <div className="navbar sm:justify-between bg-base-100">
         <div className="navbar-start">
-          <div className="dropdown">
+          
+          <h2 className="text-3xl font-semibold animate-pulse sm:text-end">
+            Testy Taco
+          </h2>
+        </div>
+        <div className=" navbar-end  hidden lg:flex">
+          <ul className="menu menu-horizontal px-1">{options}</ul>
+         
+        </div>
+        <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,13 +51,6 @@ const Navbar = () => {
               {options}
             </ul>
           </div>
-          <h2 className="text-3xl font-semibold animate-pulse sm:text-end">
-            Testy Taco
-          </h2>
-        </div>
-        <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">{options}</ul>
-        </div>
       </div>
     </>
   );

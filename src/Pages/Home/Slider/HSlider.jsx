@@ -42,12 +42,12 @@ const HSlider = () => {
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
-        <SwiperSlide><img src={slide3} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={slide2} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={slide1} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={slide4} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={slide6} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={slide5} alt="" /></SwiperSlide>
+        <SwiperSlide><img src={slide3} alt="buger pictures" /></SwiperSlide>
+        <SwiperSlide><img src={slide2} alt="sandwich picture" /></SwiperSlide>
+        <SwiperSlide><img src={slide1} alt="fried cheeken" /></SwiperSlide>
+        <SwiperSlide><img src={slide4} alt="red bull" /></SwiperSlide>
+        <SwiperSlide><img src={slide6} alt="cold drinks with kaxxi" /></SwiperSlide>
+        <SwiperSlide><img src={slide5} alt="mix pot" /></SwiperSlide>
         <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>
             <circle cx="24" cy="24" r="20"></circle>

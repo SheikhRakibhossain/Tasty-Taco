@@ -1,10 +1,11 @@
+import HSlider from "./Slider/HSlider";
 
 const Home = () => {
-    return (
-        <div>
-            <h2>I am home page</h2>
-        </div>
-    );
+  return (
+    <>
+      <HSlider />
+    </>
+  );
 };
 
 export default Home;

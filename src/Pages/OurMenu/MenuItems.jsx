@@ -3,10 +3,10 @@ const MenuItems = ({ item }) => {
   return (
     <>
       <div className="sm:flex-row md:flex justify-center  items-center gap-3 ">
-        <div>
-          <img src={image} className="w-full p-1 md:w-20  rounded" alt="reicipe image here" />
+        <div className="w-20">
+          <img src={image}  alt="reicipe image here" className="w-16 h-16 object-cover" style={{borderRadius:"0 50% 40% 50%"}} />
         </div>
-        <div className="flex justify-center ">
+        <div className="flex justify-center flex-grow ">
           <div>
             <p className="font-semibold">{name} ------</p>
             <p>{recipe}</p>

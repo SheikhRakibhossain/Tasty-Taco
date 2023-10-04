@@ -7,6 +7,7 @@ import dessertImg from "../../assets/menu/dessert-bg.jpeg";
 import pizzaImg from "../../assets/menu/pizza-bg.jpg";
 import saladImg from "../../assets/menu/salad-bg.jpg";
 import soupImg from "../../assets/menu/soup-bg.jpg";
+import drinkImg from "../../assets/others/download (1).jpg";
 
 const Menu = () => {
   const [menu] = useMenu();
@@ -71,6 +72,16 @@ const Menu = () => {
         menuImage={soupImg}
       />
       <MenuCategory items={soup} />
+      {/* soup item ended  */}
+      {/* drink item started  */}
+      <MenuCover
+        menuTitle={"drinks"}
+        menuDescription={
+          "Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        }
+        menuImage={drinkImg}
+      />
+      <MenuCategory items={drinks} />
       {/* soup item ended  */}
     </>
   );

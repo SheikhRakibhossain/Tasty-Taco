@@ -3,8 +3,8 @@ const SectionTitle = ({title, subtitle}) => {
     return (
         <>
             <div className="text-center py-4 bg-zinc-200">
-                <p className="text-slate-800 text-4xl font-bold uppercase ">--------- {title} ---------</p>
-                <h2>{subtitle}</h2>
+               <p>----------<span className="text-slate-800 text-4xl font-bold uppercase "> {title} </span>----------</p> 
+                <h2 className="text-xl font-semibold italic">{subtitle}</h2>
             </div>
         </>
     );

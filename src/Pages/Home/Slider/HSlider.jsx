@@ -28,6 +28,7 @@ const HSlider = () => {
     return (
         <>
             <Swiper
+
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
@@ -40,7 +41,7 @@ const HSlider = () => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className="mySwiper"
+        className="mySwiper border border-black"
       >
         <SwiperSlide><img src={slide3} alt="buger pictures" /></SwiperSlide>
         <SwiperSlide><img src={slide2} alt="sandwich picture" /></SwiperSlide>

@@ -12,7 +12,7 @@ import drinkImg from "../../assets/others/download (1).jpg";
 const Menu = () => {
   const [menu] = useMenu();
   console.log(menu);
-  const popular = menu.filter((item) => item.category === "popular");
+  // const popular = menu.filter((item) => item.category === "popular");
   const pizza = menu.filter((item) => item.category === "pizza");
   const dessert = menu.filter((item) => item.category === "dessert");
   const offered = menu.filter((item) => item.category === "offered");

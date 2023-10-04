@@ -4,6 +4,7 @@ import HSlider from "./Slider/HSlider";
 import cover from "../../assets/home/chef-service.jpg";
 import OrderSlider from "./OrderSlider/OrderSlider";
 import FromOurMenu from "./FromOurMenu/FromOurMenu";
+import CallUs from "./CallUs/CallUs";
 
 const Home = () => {
   return (
@@ -21,7 +22,8 @@ const Home = () => {
         menuImage={cover}
         className="mt-50"
       />
-      
+      <CallUs/>
+
     </>
   );
 };

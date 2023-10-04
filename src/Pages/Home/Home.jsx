@@ -23,6 +23,10 @@ const Home = () => {
         className="mt-50"
       />
       <CallUs/>
+      <SectionTitle
+        title={"cafe recommend"}
+        subtitle={"Truested By"}
+      />
 
     </>
   );

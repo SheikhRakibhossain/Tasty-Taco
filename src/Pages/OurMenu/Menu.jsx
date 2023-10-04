@@ -29,7 +29,7 @@ const Menu = () => {
         menuImage={menuImg}
       />
       <SectionTitle title={"Don't Miss"} subtitle={"Today's Offer"} />
-      <MenuCategory items={offered} />
+      <MenuCategory items={offered} title={"offered"}/>
 
       {/* dessert item started  */}
       <MenuCover
@@ -39,7 +39,7 @@ const Menu = () => {
         }
         menuImage={dessertImg}
       />
-      <MenuCategory items={dessert} />
+      <MenuCategory items={dessert} title={"dessert"} />
       {/* dessert item ended  */}
       {/* pizza item started  */}
       <MenuCover
@@ -49,7 +49,7 @@ const Menu = () => {
         }
         menuImage={pizzaImg}
       />
-      <MenuCategory items={pizza} />
+      <MenuCategory items={pizza} title={"pizza"} />
       {/* pizza item ended  */}
 
       {/* salad item started  */}
@@ -60,7 +60,7 @@ const Menu = () => {
         }
         menuImage={saladImg}
       />
-      <MenuCategory items={salad} />
+      <MenuCategory items={salad} title={"salad"}/>
       {/* salad item ended  */}
 
       {/* soup item started  */}
@@ -71,7 +71,7 @@ const Menu = () => {
         }
         menuImage={soupImg}
       />
-      <MenuCategory items={soup} />
+      <MenuCategory items={soup} title={"soup"} />
       {/* soup item ended  */}
       {/* drink item started  */}
       <MenuCover
@@ -81,7 +81,7 @@ const Menu = () => {
         }
         menuImage={drinkImg}
       />
-      <MenuCategory items={drinks} />
+      <MenuCategory items={drinks} title={"drinks"}/>
       {/* soup item ended  */}
     </>
   );

@@ -4,14 +4,23 @@ import SectionBanner from "../../assets/shop/banner2.jpg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import FoodCard from "./FoodCard";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const Food = () => {
+  const categories = ["salad", "pizza", "dessert", "soup", "drinks"];
+  const { category } = useParams();
+  console.log(category);
+  const initailIndex = categories.indexOf(category)
+  const [tabIndex, setTabIndex] = useState(initailIndex);
+
+
   const [menu] = useMenu();
   console.log(menu);
   // const popular = menu.filter((item) => item.category === "popular");
   const pizza = menu.filter((item) => item.category === "pizza");
   const dessert = menu.filter((item) => item.category === "dessert");
-//   const offered = menu.filter((item) => item.category === "offered");
+  //   const offered = menu.filter((item) => item.category === "offered");
   const soup = menu.filter((item) => item.category === "soup");
   const salad = menu.filter((item) => item.category === "salad");
   const drinks = menu.filter((item) => item.category === "drinks");
@@ -23,7 +32,11 @@ const Food = () => {
         menuImage={SectionBanner}
       />
       {/* order food card started */}
-      <Tabs className="my-20  ">
+      <Tabs
+        defaultIndex={tabIndex}
+        onSelect={(index) => setTabIndex(index)}
+        className="my-20  "
+      >
         <TabList className="text-center border-t-4   border-indigo-500">
           <Tab>
             <button className="btn btn-primary btn-sm"> Salad </button>

@@ -23,7 +23,7 @@ import Food from "../Pages/Food/Food";
             element:<Menu/>
         },
         {
-          path:"food",
+          path:"food/:category",
           element:<Food/>
         }
       ]

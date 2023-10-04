@@ -2,7 +2,7 @@
 const SectionTitle = ({title, subtitle}) => {
     return (
         <>
-            <div className="pt-20 pb-10 bg-zinc-200 flex justify-center items-center text-center">
+            <div className="pt-20 pb-10  flex justify-center items-center text-center">
                 <div>
                     
                <p>----------<span className="text-slate-800 text-4xl font-bold uppercase "> {title} </span>----------</p> 

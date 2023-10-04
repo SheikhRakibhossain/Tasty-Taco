@@ -29,7 +29,7 @@ const Menu = () => {
         menuImage={menuImg}
       />
       <SectionTitle title={"Don't Miss"} subtitle={"Today's Offer"} />
-      <MenuCategory items={popular} />
+      <MenuCategory items={offered} />
 
       {/* dessert item started  */}
       <MenuCover

@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  [class^="number-slide"],
+  [class*=" number-slide"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh;
+    width: 100vw;
+  }
+  
+ 

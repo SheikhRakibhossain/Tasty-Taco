@@ -3,7 +3,8 @@ import MenuItems from "./MenuItems";
 const MenuCategory = ({items}) => {
     return (
         <>
-        <div className="grid md:grid-cols-2 gap-4 px-4 py-9">
+
+        <div className="grid md:grid-cols-2 gap-4 px-6 py-16 border ">
         {
             items.map(item =><MenuItems key={item._id} item={item}></MenuItems>)
         }

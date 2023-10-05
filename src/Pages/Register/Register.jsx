@@ -1,6 +1,42 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+
+    const {createUser} = useContext(AuthContext);
+
+    const handleRegister =(event)=>{
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const phone = form.phone.value;
+        const photoURL = form.photoURL.value;
+        const email = form.email.value;
+        const password = form.current_password.value;
+        // const user = {name, phone, photoURL, email, password};
+        // console.log(user);
+        createUser( email, password)
+        .then(res => {
+            const newUser = res.user;
+            console.log(newUser);
+            updateProfile(newUser, {
+                displayName: name, photoURL:photoURL, phoneNumber:phone,
+              }).then(() => {
+                alert('user has got with all details');
+              }).catch((error) => {
+                console.log(error)
+              });
+
+
+        })
+        .catch(error=>console.log(error))
+
+
+
+    }
+
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
@@ -15,7 +51,7 @@ const Register = () => {
             <img src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4582.jpg?size=626&ext=jpg&ga=GA1.1.28436747.1695030037&semt=sph" alt="" />
           </div>
           <div className="w-1/2 card flex-shrink-0  max-w-sm shadow-2xl bg-base-100 py-8">
-            <form className="card-body">
+            <form onSubmit={handleRegister} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -33,7 +69,7 @@ const Register = () => {
                   <span className="label-text">Phone</span>
                 </label>
                 <input
-                  type="tel"
+                  type="number"
                   name="phone"
                   placeholder="Phone"
                   className="input input-bordered"
@@ -70,7 +106,7 @@ const Register = () => {
                 </label>
                 <input
                   type="password"
-                  name="password"
+                  name="current_password"
                   placeholder="password"
                   className="input input-bordered"
                   required

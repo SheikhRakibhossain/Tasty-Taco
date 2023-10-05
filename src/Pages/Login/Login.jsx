@@ -1,7 +1,36 @@
+import { useContext } from "react";
 import {Link} from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from 'sweetalert2'
+
 
 
 const Login = () => {
+
+const {signIn} = useContext(AuthContext)
+
+const handleLogin=(event)=>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signIn(email, password)
+    .then( res =>{
+        const loggedUser = res.user;
+        console.log(loggedUser);
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'User signin successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          form.reset();
+
+    })
+    .catch(error =>console.log(error))
+
+}
   return (
     <>
       <div className="hero min-h-screen bg-base-200">
@@ -16,7 +45,7 @@ const Login = () => {
             <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?size=626&ext=jpg&ga=GA1.1.28436747.1695030037&semt=sph" />
           </div>
           <div className=" w-1/2 card flex-shrink-0  max-w-sm shadow-2xl bg-base-100 py-6">
-            <form onSubmit={} className="card-body">
+            <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>

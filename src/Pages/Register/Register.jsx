@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import Swal from 'sweetalert2';
+
 
 const Register = () => {
 
@@ -23,12 +25,19 @@ const Register = () => {
             console.log(newUser);
             updateProfile(newUser, {
                 displayName: name, photoURL:photoURL, phoneNumber:phone,
-              }).then(() => {
-                alert('user has got with all details');
+              }).then((res) => {
+                console.log(res.displayName)
               }).catch((error) => {
                 console.log(error)
               });
-
+              Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'The user has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              form.reset()
 
         })
         .catch(error=>console.log(error))
@@ -39,7 +48,7 @@ const Register = () => {
 
   return (
     <>
-      <div className="hero min-h-screen bg-base-200">
+      <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left w-1/2">
             <h1 className="text-5xl font-bold">Register now!</h1>
@@ -109,6 +118,7 @@ const Register = () => {
                   name="current_password"
                   placeholder="password"
                   className="input input-bordered"
+                  autoComplete="current-password"
                   required
                 />
                 <label className="label">

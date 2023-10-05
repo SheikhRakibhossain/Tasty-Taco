@@ -16,7 +16,7 @@ const Login = () => {
             <img src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-135.jpg?size=626&ext=jpg&ga=GA1.1.28436747.1695030037&semt=sph" />
           </div>
           <div className=" w-1/2 card flex-shrink-0  max-w-sm shadow-2xl bg-base-100 py-6">
-            <form className="card-body">
+            <form onSubmit={} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>

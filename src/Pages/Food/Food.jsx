@@ -10,7 +10,7 @@ import { useState } from "react";
 const Food = () => {
   const categories = ["salad", "pizza", "dessert", "soup", "drinks"];
   const { category } = useParams();
-  console.log(category);
+//   console.log(category);
   const initailIndex = categories.indexOf(category)
   const [tabIndex, setTabIndex] = useState(initailIndex);
 

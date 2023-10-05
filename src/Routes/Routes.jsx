@@ -4,6 +4,8 @@ import Home from "../Pages/Home/Home";
 import About from "../Pages/About/About";
 import Menu from "../Pages/OurMenu/Menu";
 import Food from "../Pages/Food/Food";
+import Register from "../Pages/Register/Register";
+import Login from "../Pages/Login/Login";
 
   const router = createBrowserRouter([
     {
@@ -25,7 +27,16 @@ import Food from "../Pages/Food/Food";
         {
           path:"food/:category",
           element:<Food/>
+        },
+        {
+          path:"register",
+          element:<Register/>
+        },
+        {
+          path:"login",
+          element:<Login/>
         }
+
       ]
     },
   ]);

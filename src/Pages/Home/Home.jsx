@@ -5,10 +5,15 @@ import cover from "../../assets/home/chef-service.jpg";
 import OrderSlider from "./OrderSlider/OrderSlider";
 import FromOurMenu from "./FromOurMenu/FromOurMenu";
 import CallUs from "./CallUs/CallUs";
+import { Helmet } from "react-helmet-async";
+
 
 const Home = () => {
   return (
     <>
+    <Helmet>
+      <title>Testy Taco | Home</title>
+    </Helmet>
       <HSlider />
       <SectionTitle
         title={"ORDER ONLINE"}

@@ -44,7 +44,7 @@ const Navbar = () => {
       {user ? (
         <>
           <li>
-            <button onClick={handleLogout} className="btn btn-ghost btn-sm">
+            <button onClick={handleLogout} className="border border-purple-500 px-3 py-2 text-red-500 font-semibold">
               Log Out
             </button>
           </li>

@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FaShoppingBag } from "react-icons/fa";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -19,11 +20,10 @@ const Navbar = () => {
           draggable: true,
           progress: undefined,
           theme: "dark",
-          });
-       
+        });
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
   };
 
@@ -44,7 +44,10 @@ const Navbar = () => {
       {user ? (
         <>
           <li>
-            <button onClick={handleLogout} className="border border-purple-500 px-3 py-2 text-red-500 font-semibold">
+            <button
+              onClick={handleLogout}
+              className="border border-purple-500 px-3 py-2 text-red-500 font-semibold"
+            >
               Log Out
             </button>
           </li>
@@ -65,6 +68,12 @@ const Navbar = () => {
       <li>
         <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
+      {/* cart */}
+      <button className="btn btn-sm bg-white">
+        
+      <FaShoppingBag/>
+        <div className="badge badge-secondary">+0</div>
+      </button>
     </>
   );
   return (
@@ -105,17 +114,16 @@ const Navbar = () => {
       </div>
       {/* toast container */}
       <ToastContainer
-      position="top-right"
-      autoClose={3000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="dark"
-      
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
       />
     </>
   );

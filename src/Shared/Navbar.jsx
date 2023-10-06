@@ -4,9 +4,11 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaShoppingBag } from "react-icons/fa";
+import useCart from "../Hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart()
 
   const handleLogout = () => {
     logOut(user)
@@ -72,13 +74,13 @@ const Navbar = () => {
       <button className="btn btn-sm bg-white">
         
       <FaShoppingBag/>
-        <div className="badge badge-secondary">+0</div>
+        <div className="badge badge-secondary">+{cart?.length || 0}</div>
       </button>
     </>
   );
   return (
     <>
-      <div className="navbar sm:justify-between bg-base-100">
+      <div className="navbar sm:justify-between bg-base-100 sticky top-0">
         <div className="navbar-start">
           <h2 className="text-3xl font-semibold animate-pulse sm:text-end">
             Testy Taco

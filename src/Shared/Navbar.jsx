@@ -1,6 +1,20 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logOut(user)
+      .then(() => {
+       
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  };
+
   const options = (
     <>
       <li>
@@ -15,11 +29,29 @@ const Navbar = () => {
       <li>
         <NavLink to="/food/salad">Food</NavLink>
       </li>
+      {user ? (
+        <>
+          <li>
+            <button onClick={handleLogout} className="btn btn-ghost btn-sm">
+              Log Out
+            </button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+        </>
+      )}
       <li>
-        <NavLink to="/register">Register</NavLink>
+        <NavLink to="/pay">Pay</NavLink>
       </li>
       <li>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
     </>
   );
@@ -27,39 +59,37 @@ const Navbar = () => {
     <>
       <div className="navbar sm:justify-between bg-base-100">
         <div className="navbar-start">
-          
           <h2 className="text-3xl font-semibold animate-pulse sm:text-end">
             Testy Taco
           </h2>
         </div>
         <div className=" navbar-end  hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{options}</ul>
-         
         </div>
         <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              {options}
-            </ul>
-          </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            {options}
+          </ul>
+        </div>
       </div>
     </>
   );

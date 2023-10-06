@@ -1,19 +1,35 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import Swal from 'sweetalert2'
-import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FCard = ({ item }) => {
   const { image, price, name, recipe } = item;
 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleAddToCart = (CartFood) => {
     console.log(CartFood);
-    if (user) {
+    if (user && user.email) {
       // console.log(user)
-      fetch("http://localhost:5000/carts")
+      //food item k destructure kore neya holo and user email k soho
+      const orderedFood = {
+        foodId: __dirname,
+        image,
+        price,
+        name,
+        recipe,
+        email: user.email,
+      };
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(orderedFood),
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
@@ -26,25 +42,24 @@ const FCard = ({ item }) => {
             });
           }
         });
-    }
-    else {
+    } else {
       Swal.fire({
-        title: 'Please Login before Buying',
-        icon: 'warning',
+        title: "Please Login before Buying",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Login'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login",
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            'Re-directed to login page!',
-            'click ok and login for added the food',
-            'success',
-            navigate('/login')
-          )
+            "Re-directed to login page!",
+            "click ok and login for added the food",
+            "success",
+            navigate("/login", { state: { from: location } })
+          );
         }
-      })
+      });
     }
   };
 

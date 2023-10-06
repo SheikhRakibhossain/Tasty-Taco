@@ -126,7 +126,7 @@ const Register = () => {
                     Forgot password?
                   </Link>
                   <Link to="/login" className="label-text-alt link link-hover">
-                    already have an account? Login
+                    already have an account? <span className="text-red-400 font-semibold">please, Login</span>
                   </Link>
                 </label>
               </div>

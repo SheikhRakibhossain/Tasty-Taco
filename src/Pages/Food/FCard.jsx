@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const FCard = ({ item }) => {
-  const { image, price, name, recipe } = item;
+  const { image, price, name, recipe, _id } = item;
 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const FCard = ({ item }) => {
       // console.log(user)
       //food item k destructure kore neya holo and user email k soho
       const orderedFood = {
-        foodId: __dirname,
+        foodId:_id,
         image,
         price,
         name,
@@ -78,9 +78,9 @@ const FCard = ({ item }) => {
           <div className="card-actions">
             <button
               onClick={() => handleAddToCart(item)}
-              className="btn btn-primary btn-sm"
+              className="btn btn-primary btn-sm rounded-none"
             >
-              Buy Now
+              Add To Cart
             </button>
           </div>
         </div>

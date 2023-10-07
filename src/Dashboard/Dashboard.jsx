@@ -47,14 +47,14 @@ const Dashboard = () => {
               <>
                 {" "}
                 <li>
-                  <NavLink to="user-home">
+                  <NavLink to="admin">
                     {" "}
                     <FaHome />
                     Admin Home{" "}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="my-cart">
+                  <NavLink to="add-item">
                     {" "}
                     <FaUtensils />
                     Add Item{" "}
@@ -62,19 +62,19 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="reservation">
+                  <NavLink to="manage-item">
                     {" "}
                     <FaLandmark /> Manage Item{" "}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="payment-history">
+                  <NavLink to="manage-booking">
                     {" "}
                     <FaBook /> Manage Booking{" "}
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="add-review">
+                  <NavLink to="all-users">
                     {" "}
                     <FaUsers />All Users
                   </NavLink>

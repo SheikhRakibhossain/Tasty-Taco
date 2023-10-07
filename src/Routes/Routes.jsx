@@ -10,6 +10,11 @@ import Pay from "../Pages/Secret/Pay";
 import PrivateRoute from "../Hooks/PrivateRoute";
 import Dashboard from "../Dashboard/Dashboard";
 import MyCart from "../Dashboard/MyCart/MyCart";
+import AddItem from './../Dashboard/Amin/AddItem/AddItem';
+import Admin from './../Dashboard/Amin/Admin/Admin';
+import AllUsers from './../Dashboard/Amin/AllUsers/AllUsers';
+import ManageItem from "../Dashboard/Amin/ManageItem/ManageItem";
+import ManageBooking from './../Dashboard/Amin/ManageBooking/ManageBooking';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +65,28 @@ const router = createBrowserRouter([
         </PrivateRoute>
       ),
       children:[
+       
+        {
+          path:'add-item',
+          element:<AddItem/>
+        },
+        {
+          path:'admin',
+          element:<Admin/>
+        },
+        {
+          path:'all-users',
+          element:<AllUsers/>
+        },
+        {
+          path:'manage-booking',
+          element:<ManageBooking/>
+        },
+        {
+          path:'manage-item',
+          element:<ManageItem/>
+        },
+        // normal user pages routes
         {
           path:'my-cart',
           element:<MyCart/>

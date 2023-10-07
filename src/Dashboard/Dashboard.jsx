@@ -1,4 +1,4 @@
-import { FaCalendar, FaCalendarCheck, FaHome, FaHouseUser, FaLayerGroup, FaPaperPlane, FaShoppingCart, FaSitemap, FaStarAndCrescent, FaToggleOff, FaWallet } from "react-icons/fa";
+import { FaCalendar, FaCalendarCheck, FaHome, FaHouseUser, FaLayerGroup, FaPaperPlane, FaShoppingCart, FaSitemap, FaStarAndCrescent, FaWallet } from "react-icons/fa";
 import { NavLink, Outlet} from "react-router-dom";
 
 const Dashboard = () => {
@@ -50,10 +50,10 @@ const Dashboard = () => {
           <div className="divider"></div> 
             {/* Sidebar content here */}
             <li>
-              <NavLink to="home"> <FaHouseUser/>Home </NavLink>
+              <NavLink to="/"> <FaHouseUser/>Home </NavLink>
             </li>
             <li>
-              <NavLink to="menu"> <FaLayerGroup/>My Cart </NavLink>
+              <NavLink to="menu"> <FaLayerGroup/>Menu </NavLink>
             </li>
             <li>
               <NavLink to="food"> <FaSitemap/>Food </NavLink>

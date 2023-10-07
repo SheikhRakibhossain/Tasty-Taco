@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -71,11 +71,11 @@ const Navbar = () => {
         <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
       {/* cart */}
-      <button className="btn btn-sm bg-white">
+      <Link to="/dashboard/my-cart" className="btn btn-sm bg-white">
         
       <FaShoppingBag/>
         <div className="badge badge-secondary">+{cart?.length || 0}</div>
-      </button>
+      </Link>
     </>
   );
   return (

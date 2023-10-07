@@ -1,10 +1,18 @@
 import { Helmet } from "react-helmet-async";
 import useCart from "../../Hooks/useCart";
 import SectionTitle from "../../Shared/SectionTitle";
+import { FaTrash } from "react-icons/fa";
 
 const MyCart = () => {
   const [cart] = useCart();
   const totalPrice = cart.reduce((acc, product) => acc + product.price, 0);
+
+  const handleDelete =(item)=>{
+
+console.log(item._id)
+
+
+  }
 
   return (
     <>
@@ -31,12 +39,19 @@ const MyCart = () => {
     </thead>
     <tbody>
       {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
+      {
+        cart.map(item =><tr key={item._id}>
+            <th><div className="avatar">
+              <div className="mask  w-12 h-12">
+                <img src={item.image} alt="food image" />
+              </div>
+            </div></th>
+            <td>{item.name}</td>
+            <td>{item.price}</td>
+            <td onClick={()=>handleDelete(item)} className="hover:cursor-pointer "><FaTrash/></td>
+          </tr>)
+      }
+      
       
     </tbody>
   </table>

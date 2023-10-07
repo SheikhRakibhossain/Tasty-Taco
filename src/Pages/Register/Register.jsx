@@ -1,50 +1,67 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import Swal from 'sweetalert2';
-
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-    const {createUser} = useContext(AuthContext);
+  const handleRegister = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const phone = form.phone.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.current_password.value;
+    // const user = {name, phone, photoURL, email, password};
+    // console.log(user);
+    createUser(email, password)
+      .then((res) => {
+        const newUser = res.user;
+        console.log("New user here", newUser);
 
-    const handleRegister =(event)=>{
-        event.preventDefault();
-        const form = event.target;
-        const name = form.name.value;
-        const phone = form.phone.value;
-        const photoURL = form.photoURL.value;
-        const email = form.email.value;
-        const password = form.current_password.value;
-        // const user = {name, phone, photoURL, email, password};
-        // console.log(user);
-        createUser( email, password)
-        .then(res => {
-            const newUser = res.user;
-            console.log(newUser);
-            updateProfile(newUser, {
-                displayName: name, photoURL:photoURL, phoneNumber:phone,
-              }).then((res) => {
-                console.log(res.displayName)
-              }).catch((error) => {
-                console.log(error)
-              });
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'The user has been saved',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              form.reset()
-
+        updateProfile(newUser, {
+          displayName: name,
+          photoURL: photoURL,
+          phoneNumber: phone,
         })
-        .catch(error=>console.log(error))
-
-
-
-    }
+          .then(() => {
+            // console.log(res.user);
+            // data saving function for save in the backend database center
+            const user = { name:newUser.displayName, email:newUser.email, phone:newUser.phone };
+            console.log("User data before sending to API:", user);
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(user),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "The user has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  form.reset();
+                  navigate('/')
+                }
+              })
+              .catch((error) => console.log("api error here", error));
+          })
+          .catch((error) => {
+            console.log("user backend saving database error", error);
+          });
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -57,7 +74,10 @@ const Register = () => {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <img src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4582.jpg?size=626&ext=jpg&ga=GA1.1.28436747.1695030037&semt=sph" alt="" />
+            <img
+              src="https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4582.jpg?size=626&ext=jpg&ga=GA1.1.28436747.1695030037&semt=sph"
+              alt=""
+            />
           </div>
           <div className="w-1/2 card flex-shrink-0  max-w-sm shadow-2xl bg-base-100 py-8">
             <form onSubmit={handleRegister} className="card-body">
@@ -126,19 +146,30 @@ const Register = () => {
                     Forgot password?
                   </Link>
                   <Link to="/login" className="label-text-alt link link-hover">
-                    already have an account? <span className="text-red-400 font-semibold">please, Login</span>
+                    already have an account?{" "}
+                    <span className="text-red-400 font-semibold">
+                      please, Login
+                    </span>
                   </Link>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <input type="submit" value="Register Now" className="btn btn-primary"/>
+                <input
+                  type="submit"
+                  value="Register Now"
+                  className="btn btn-primary"
+                />
               </div>
             </form>
-            <button
-    className="px-4 py-2 flex justify-center items-center gap-2  rounded-lg text-slate-700  hover:text-slate-900 hover:cursor-pointer transition duration-150">
-    <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo"/>
-    <span>Continue with Google</span>
-</button>
+            <button className="px-4 py-2 flex justify-center items-center gap-2  rounded-lg text-slate-700  hover:text-slate-900 hover:cursor-pointer transition duration-150">
+              <img
+                className="w-6 h-6"
+                src="https://www.svgrepo.com/show/475656/google-color.svg"
+                loading="lazy"
+                alt="google logo"
+              />
+              <span>Continue with Google</span>
+            </button>
           </div>
         </div>
       </div>

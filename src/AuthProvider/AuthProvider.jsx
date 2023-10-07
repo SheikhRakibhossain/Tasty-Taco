@@ -7,6 +7,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+
 
 export const AuthContext = createContext();
 const auth = getAuth(app);

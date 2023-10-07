@@ -29,11 +29,43 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
             <li>
-              <NavLink to="my-cart"> <FaShoppingCart/> My Cart </NavLink>
+              <NavLink to="user-home"> <FaShoppingCart/>User Home </NavLink>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <NavLink to="my-cart"> <FaShoppingCart/>My Cart </NavLink>
             </li>
+            <li>
+              <NavLink to="reservation"> <FaShoppingCart/> Reservation </NavLink>
+            </li>
+            <li>
+              <NavLink to="payment-history"> <FaShoppingCart/> Payment History </NavLink>
+            </li>
+            <li>
+              <NavLink to="add-review"> <FaShoppingCart/> Add Review</NavLink>
+            </li>
+            <li>
+              <NavLink to="my-booking"> <FaShoppingCart/> My Booking </NavLink>
+            </li>
+
+          </ul>
+          <div className="divider"></div> 
+          {/* 2nd section part menu for all users */}
+          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            {/* Sidebar content here */}
+            <li>
+              <NavLink to="home"> <FaShoppingCart/>Home </NavLink>
+            </li>
+            <li>
+              <NavLink to="menu"> <FaShoppingCart/>My Cart </NavLink>
+            </li>
+            <li>
+              <NavLink to="food"> <FaShoppingCart/>Food </NavLink>
+            </li>
+            <li>
+              <NavLink to="contact"> <FaShoppingCart/>Contact</NavLink>
+            </li>
+            
+
           </ul>
         </div>
       </div>

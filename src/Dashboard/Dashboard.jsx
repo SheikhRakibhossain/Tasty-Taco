@@ -1,13 +1,17 @@
 import {
+    FaBook,
   FaCalendar,
   FaCalendarCheck,
   FaHome,
   FaHouseUser,
+  FaLandmark,
   FaLayerGroup,
   FaPaperPlane,
   FaShoppingCart,
   FaSitemap,
   FaStarAndCrescent,
+  FaUsers,
+  FaUtensils,
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
@@ -15,6 +19,7 @@ import useCart from "../Hooks/useCart";
 
 const Dashboard = () => {
   const [cart] = useCart();
+  const isAdmin = true;
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -38,50 +43,91 @@ const Dashboard = () => {
           ></label>
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            <li>
-              <NavLink to="user-home">
+            {isAdmin ? (
+              <>
                 {" "}
-                <FaHome />
-                User Home{" "}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="my-cart">
+                <li>
+                  <NavLink to="user-home">
+                    {" "}
+                    <FaHome />
+                    Admin Home{" "}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="my-cart">
+                    {" "}
+                    <FaUtensils />
+                    Add Item{" "}
+                   
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="reservation">
+                    {" "}
+                    <FaLandmark /> Manage Item{" "}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="payment-history">
+                    {" "}
+                    <FaBook /> Manage Booking{" "}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="add-review">
+                    {" "}
+                    <FaUsers />All Users
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <>
                 {" "}
-                <FaShoppingCart />
-                My Cart{" "}
-                <span className="badge badge-secondary badge-outline">
-                  +{cart.length}
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="reservation">
-                {" "}
-                <FaCalendar /> Reservation{" "}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="payment-history">
-                {" "}
-                <FaWallet /> Payment History{" "}
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="add-review">
-                {" "}
-                <FaStarAndCrescent /> Add Review
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="my-booking">
-                {" "}
-                <FaCalendarCheck /> My Booking{" "}
-              </NavLink>
-            </li>
-
+                <li>
+                  <NavLink to="user-home">
+                    {" "}
+                    <FaHome />
+                    User Home{" "}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="my-cart">
+                    {" "}
+                    <FaShoppingCart />
+                    My Cart{" "}
+                    <span className="badge badge-secondary badge-outline">
+                      +{cart.length}
+                    </span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="reservation">
+                    {" "}
+                    <FaCalendar /> Reservation{" "}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="payment-history">
+                    {" "}
+                    <FaWallet /> Payment History{" "}
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="add-review">
+                    {" "}
+                    <FaStarAndCrescent /> Add Review
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="my-booking">
+                    {" "}
+                    <FaCalendarCheck /> My Booking{" "}
+                  </NavLink>
+                </li>
+              </>
+            )}
             <div className="divider"></div>
-            {/* Sidebar content here */}
+            {/* second menu content here */}
             <li>
               <NavLink to="/">
                 {" "}

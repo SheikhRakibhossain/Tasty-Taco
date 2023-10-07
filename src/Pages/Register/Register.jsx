@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import Swal from "sweetalert2";
@@ -8,6 +8,8 @@ import GoogleLogin from "../../Shared/GoogleLogin.jsx/GoogleLogin";
 const Register = () => {
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -52,7 +54,7 @@ const Register = () => {
                     timer: 1500,
                   });
                   form.reset();
-                  navigate('/')
+                  navigate(from, { replace: true });
                 }
               })
               .catch((error) => console.log("api error here", error));

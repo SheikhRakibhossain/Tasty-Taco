@@ -27,12 +27,8 @@ const from = location.state?.from?.pathname || "/";
               body: JSON.stringify(user),
             })
               .then((res) => res.json())
-              .then((data) => {
-                if (data.insertedId) {
-                  
-                  
+              .then(() => {
                     navigate(from, { replace: true });
-                }
               })
               .catch((error) => console.log("api error here", error));
           

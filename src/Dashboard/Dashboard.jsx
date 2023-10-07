@@ -1,4 +1,4 @@
-import { FaShoppingCart } from "react-icons/fa";
+import { FaCalendar, FaCalendarCheck, FaHome, FaHouseUser, FaLayerGroup, FaPaperPlane, FaShoppingCart, FaSitemap, FaStarAndCrescent, FaToggleOff, FaWallet } from "react-icons/fa";
 import { NavLink, Outlet} from "react-router-dom";
 
 const Dashboard = () => {
@@ -29,44 +29,43 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
             <li>
-              <NavLink to="user-home"> <FaShoppingCart/>User Home </NavLink>
+              <NavLink to="user-home"> <FaHome/>User Home </NavLink>
             </li>
             <li>
               <NavLink to="my-cart"> <FaShoppingCart/>My Cart </NavLink>
             </li>
             <li>
-              <NavLink to="reservation"> <FaShoppingCart/> Reservation </NavLink>
+              <NavLink to="reservation"> <FaCalendar/> Reservation </NavLink>
             </li>
             <li>
-              <NavLink to="payment-history"> <FaShoppingCart/> Payment History </NavLink>
+              <NavLink to="payment-history"> <FaWallet/> Payment History </NavLink>
             </li>
             <li>
-              <NavLink to="add-review"> <FaShoppingCart/> Add Review</NavLink>
+              <NavLink to="add-review"> <FaStarAndCrescent/> Add Review</NavLink>
             </li>
             <li>
-              <NavLink to="my-booking"> <FaShoppingCart/> My Booking </NavLink>
+              <NavLink to="my-booking"> <FaCalendarCheck/> My Booking </NavLink>
             </li>
 
-          </ul>
           <div className="divider"></div> 
-          {/* 2nd section part menu for all users */}
-          <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
             <li>
-              <NavLink to="home"> <FaShoppingCart/>Home </NavLink>
+              <NavLink to="home"> <FaHouseUser/>Home </NavLink>
             </li>
             <li>
-              <NavLink to="menu"> <FaShoppingCart/>My Cart </NavLink>
+              <NavLink to="menu"> <FaLayerGroup/>My Cart </NavLink>
             </li>
             <li>
-              <NavLink to="food"> <FaShoppingCart/>Food </NavLink>
+              <NavLink to="food"> <FaSitemap/>Food </NavLink>
             </li>
             <li>
-              <NavLink to="contact"> <FaShoppingCart/>Contact</NavLink>
+              <NavLink to="contact"> <FaPaperPlane/>Contact</NavLink>
             </li>
             
 
           </ul>
+          {/* 2nd section part menu for all users */}
+          
         </div>
       </div>
     </>

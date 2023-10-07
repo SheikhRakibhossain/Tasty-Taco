@@ -1,12 +1,25 @@
-import { FaCalendar, FaCalendarCheck, FaHome, FaHouseUser, FaLayerGroup, FaPaperPlane, FaShoppingCart, FaSitemap, FaStarAndCrescent, FaWallet } from "react-icons/fa";
-import { NavLink, Outlet} from "react-router-dom";
+import {
+  FaCalendar,
+  FaCalendarCheck,
+  FaHome,
+  FaHouseUser,
+  FaLayerGroup,
+  FaPaperPlane,
+  FaShoppingCart,
+  FaSitemap,
+  FaStarAndCrescent,
+  FaWallet,
+} from "react-icons/fa";
+import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../Hooks/useCart";
 
 const Dashboard = () => {
+  const [cart] = useCart();
   return (
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center justify-normal">
           {/* Page content here */}
           <label
             htmlFor="my-drawer-2"
@@ -15,11 +28,7 @@ const Dashboard = () => {
             Show all Menu
           </label>
 
-          <Outlet/>
-          
-
-
-         
+          <Outlet />
         </div>
         <div className="drawer-side">
           <label
@@ -30,43 +39,79 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
             <li>
-              <NavLink to="user-home"> <FaHome/>User Home </NavLink>
+              <NavLink to="user-home">
+                {" "}
+                <FaHome />
+                User Home{" "}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="my-cart"> <FaShoppingCart/>My Cart </NavLink>
+              <NavLink to="my-cart">
+                {" "}
+                <FaShoppingCart />
+                My Cart{" "}
+                <span className="badge badge-secondary badge-outline">
+                  +{cart.length}
+                </span>
+              </NavLink>
             </li>
             <li>
-              <NavLink to="reservation"> <FaCalendar/> Reservation </NavLink>
+              <NavLink to="reservation">
+                {" "}
+                <FaCalendar /> Reservation{" "}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="payment-history"> <FaWallet/> Payment History </NavLink>
+              <NavLink to="payment-history">
+                {" "}
+                <FaWallet /> Payment History{" "}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="add-review"> <FaStarAndCrescent/> Add Review</NavLink>
+              <NavLink to="add-review">
+                {" "}
+                <FaStarAndCrescent /> Add Review
+              </NavLink>
             </li>
             <li>
-              <NavLink to="my-booking"> <FaCalendarCheck/> My Booking </NavLink>
+              <NavLink to="my-booking">
+                {" "}
+                <FaCalendarCheck /> My Booking{" "}
+              </NavLink>
             </li>
 
-          <div className="divider"></div> 
+            <div className="divider"></div>
             {/* Sidebar content here */}
             <li>
-              <NavLink to="/"> <FaHouseUser/>Home </NavLink>
+              <NavLink to="/">
+                {" "}
+                <FaHouseUser />
+                Home{" "}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="menu"> <FaLayerGroup/>Menu </NavLink>
+              <NavLink to="menu">
+                {" "}
+                <FaLayerGroup />
+                Menu{" "}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="food"> <FaSitemap/>Food </NavLink>
+              <NavLink to="food">
+                {" "}
+                <FaSitemap />
+                Food{" "}
+              </NavLink>
             </li>
             <li>
-              <NavLink to="contact"> <FaPaperPlane/>Contact</NavLink>
+              <NavLink to="contact">
+                {" "}
+                <FaPaperPlane />
+                Contact
+              </NavLink>
             </li>
-            
-
           </ul>
           {/* 2nd section part menu for all users */}
-          
         </div>
       </div>
     </>

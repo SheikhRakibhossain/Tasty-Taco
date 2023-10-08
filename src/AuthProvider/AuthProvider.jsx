@@ -9,7 +9,8 @@ import {
   signOut,
 } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-
+import axios from "axios";
+// const axios = require('axios').default;
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -29,13 +30,12 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-//google login
-const GoogleLogin =()=>{
-  setLoading(true)
-  return signInWithPopup(auth, GoogleProvider)
-
-}
-//logout function
+  //google login
+  const GoogleLogin = () => {
+    setLoading(true);
+    return signInWithPopup(auth, GoogleProvider);
+  };
+  //logout function
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -45,6 +45,16 @@ const GoogleLogin =()=>{
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       console.log("current user logged", currentUser);
+      if (currentUser) {
+        axios.post("http://localhost:5000/jwt", { email: currentUser.email })
+          .then((data) => {
+            console.log("axios data",data.data);
+          })
+          .catch((error) => {
+            console.error("axios error", error);
+          });
+      }
+
       setLoading(false);
     });
     return () => {
@@ -62,9 +72,7 @@ const GoogleLogin =()=>{
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>
-        {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 

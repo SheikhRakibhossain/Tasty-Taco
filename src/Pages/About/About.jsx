@@ -14,12 +14,55 @@ const About = () => {
           </div>
         </div>
       </div>
+      {/* carousel */}
+      <div className="carousel rounded-box">
+        <div className="carousel-item">
+          <img
+            src="/images/stock/photo-1559703248-dcaaec9fab78.jpg"
+            alt="Burger"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="/images/stock/photo-1565098772267-60af42b81ef2.jpg"
+            alt="Burger"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="/images/stock/photo-1572635148818-ef6fd45eb394.jpg"
+            alt="Burger"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="/images/stock/photo-1494253109108-2e30c049369b.jpg"
+            alt="Burger"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="/images/stock/photo-1550258987-190a2d41a8ba.jpg"
+            alt="Burger"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="/images/stock/photo-1559181567-c3190ca9959b.jpg"
+            alt="Burger"
+          />
+        </div>
+        <div className="carousel-item">
+          <img
+            src="/images/stock/photo-1601004890684-d8cbf643f5f2.jpg"
+            alt="Burger"
+          />
+        </div>
+      </div>
       {/* brower added */}
       <div className="mockup-browser border border-base-300">
         <div className="mockup-browser-toolbar">
-          <div className="input border border-base-300">
-            https://rakib.com
-          </div>
+          <div className="input border border-base-300">https://rakib.com</div>
         </div>
         <div className="flex justify-center px-4 py-16 border-t border-base-300">
           Hello!

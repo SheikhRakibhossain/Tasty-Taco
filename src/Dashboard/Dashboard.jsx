@@ -1,5 +1,5 @@
 import {
-    FaBook,
+  FaBook,
   FaCalendar,
   FaCalendarCheck,
   FaHome,
@@ -21,7 +21,7 @@ import useAdmin from "../Hooks/useAdmin";
 const Dashboard = () => {
   const [cart] = useCart();
   // const isAdmin = true;
-  const [isAdmin ]= useAdmin();
+  const [isAdmin] = useAdmin();
   return (
     <>
       <div className="drawer lg:drawer-open">
@@ -60,7 +60,6 @@ const Dashboard = () => {
                     {" "}
                     <FaUtensils />
                     Add Item{" "}
-                   
                   </NavLink>
                 </li>
                 <li>
@@ -78,7 +77,8 @@ const Dashboard = () => {
                 <li>
                   <NavLink to="all-users">
                     {" "}
-                    <FaUsers />All Users
+                    <FaUsers />
+                    All Users
                   </NavLink>
                 </li>
               </>

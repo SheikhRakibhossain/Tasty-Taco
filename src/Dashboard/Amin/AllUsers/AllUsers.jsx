@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { FaTrash, FaUserAltSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useAxiousSecure from './../../../Hooks/useAxiousSecure';
+import useAxiousSecure from "./../../../Hooks/useAxiousSecure";
+import useAuth from "../../../Hooks/useAuth";
 
 const AllUsers = () => {
   const [axiousSecure] = useAxiousSecure();
+  const { user } = useAuth();
   const { data: users = [], refetch } = useQuery(["users"], async () => {
     const res = await axiousSecure.get("/users");
     return res.data;
@@ -17,25 +19,23 @@ const AllUsers = () => {
   };
   const handleUserRole = (user) => {
     // console.log("hadle role click", user);
-    fetch(`http://localhost:5000/users/admin/${user._id}`,{
-        method:"PATCH",
+    fetch(`http://localhost:5000/users/admin/${user._id}`, {
+      method: "PATCH",
     })
-    .then(res => res.json())
-    .then(data =>{
+      .then((res) => res.json())
+      .then((data) => {
         refetch();
-        if(data.modifiedCount){
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: `${user.name} is now a admin`,
-                showConfirmButton: false,
-                timer: 1500
-              })
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${user.name} is now a admin`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
-    
-    })
-    .catch(error =>console.log("going to make admin error",error))
-    
+      })
+      .catch((error) => console.log("going to make admin error", error));
   };
   return (
     <>
@@ -55,7 +55,9 @@ const AllUsers = () => {
           <h2 className="text-2xl font-semibold text-white">
             Total Users: {users.length}
           </h2>
-          <h2 className="text-2xl font-semibold text-white">Total </h2>
+          <h2 className="text-2xl font-semibold text-black">
+            {user && <>{user.displayName}</>}{" "}
+          </h2>
           <button className="btn btn-primary btn-sm">Action</button>
         </div>
         <table className="table">

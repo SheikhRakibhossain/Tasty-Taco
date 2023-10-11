@@ -50,6 +50,8 @@ const AuthProvider = ({ children }) => {
           .then((data) => {
             console.log("axios data",data.data);
             localStorage.setItem("access-token", data.data)
+            setLoading(false);
+
           })
           .catch((error) => {
             console.error("axios error", error);
@@ -58,7 +60,6 @@ const AuthProvider = ({ children }) => {
         localStorage.removeItem("access-token")
       }
 
-      setLoading(false);
     });
     return () => {
       return unsubscribe();

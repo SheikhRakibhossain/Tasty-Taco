@@ -16,10 +16,12 @@ import {
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  // const isAdmin = true;
+  const [isAdmin ]= useAdmin();
   return (
     <>
       <div className="drawer lg:drawer-open">

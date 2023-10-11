@@ -3,9 +3,9 @@ import MenuCategory from "../../OurMenu/MenuCategory";
 
 const FromOurMenu = () => {
   const [menu] = useMenu();
-  console.log(menu);
+  // console.log(menu);
   const popular = menu.filter((item) => item.category === "popular");
-  console.log(popular);
+  // console.log(popular);
 
   return (
     <>

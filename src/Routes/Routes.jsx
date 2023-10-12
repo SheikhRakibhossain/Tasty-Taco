@@ -15,6 +15,7 @@ import Admin from './../Dashboard/Amin/Admin/Admin';
 import AllUsers from './../Dashboard/Amin/AllUsers/AllUsers';
 import ManageItem from "../Dashboard/Amin/ManageItem/ManageItem";
 import ManageBooking from './../Dashboard/Amin/ManageBooking/ManageBooking';
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
        
         {
           path:'add-item',
-          element:<AddItem/>
+          element:<AdminRoute><AddItem/></AdminRoute>
         },
         {
           path:'admin',

@@ -14,7 +14,7 @@ const AddItem = () => {
     <>
       <h2>i am add item page</h2>
       <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="form-control">
             <input
               className="input input-bordered"
@@ -24,7 +24,10 @@ const AddItem = () => {
             />
           </div>
           <div className="form-control">
-            <select {...register("Category", { required: true })}>
+            <select
+              {...register("Category", { required: true })}
+              className="input input-bordered"
+            >
               <option value="salad">salad</option>
               <option value=" dessert"> dessert</option>
               <option value=" drinks"> drinks</option>
@@ -56,7 +59,7 @@ const AddItem = () => {
             />
           </div>
 
-          <input type="submit" value="Add Item" className="btn btn-primary"/>
+          <input type="submit" value="Add Item" className="btn btn-primary" />
         </form>
       </div>
     </>

@@ -1,8 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
+import useAxiousSecure from "../../../Hooks/useAxiousSecure";
 
 const AddItem = () => {
   const imageApi = import.meta.env.VITE_IMAGE_API;
+  const [axiosSecure] = useAxiousSecure();
  
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
   const {
@@ -27,6 +29,10 @@ const AddItem = () => {
           const { name, price, recipe, category } = data;
           const newItem = { name, price:parseFloat(price), recipe, category, image: imageUrl };
           console.log("success", newItem);
+          axiosSecure.post('/menu', newItem)
+          .then(data =>{
+            console.log("after successfully uploaded data", data.data)
+          })
         }
       });
 

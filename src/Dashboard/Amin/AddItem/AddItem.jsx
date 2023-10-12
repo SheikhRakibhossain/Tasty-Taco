@@ -33,7 +33,7 @@ const AddItem = () => {
           />
           <textarea {...register("Recipe Details", { required: true })} />
           <input
-            type="url"
+            type="file"
             placeholder="Recipe Image"
             {...register("Recipe Image", { required: true })}
           />

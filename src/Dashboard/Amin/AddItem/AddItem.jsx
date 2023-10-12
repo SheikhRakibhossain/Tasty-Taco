@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import useAxiousSecure from "../../../Hooks/useAxiousSecure";
+import Swal from "sweetalert2";
+
 
 const AddItem = () => {
   const imageApi = import.meta.env.VITE_IMAGE_API;
@@ -32,6 +34,15 @@ const AddItem = () => {
           axiosSecure.post('/menu', newItem)
           .then(data =>{
             console.log("after successfully uploaded data", data.data)
+            if(data.data.insertedId){
+               return Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your menu item has added successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+            }
           })
         }
       });

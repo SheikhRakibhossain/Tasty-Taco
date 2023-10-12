@@ -2,23 +2,40 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 
 const AddItem = () => {
-    const imageApi = import.meta.env.VITE_IMAGE_API;
-    console.log(imageApi);
-    const image_hosting_url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageApi}`
+  const imageApi = import.meta.env.VITE_IMAGE_API;
+  console.log(imageApi);
+  const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-//   data submit form
+  //   data submit form
   const onSubmit = (data) => {
+    console.log("form data", data);
+    const formdata = new FormData();
+    formdata.append("image", data.image[0]);
+    fetch(image_hosting_url, {
+      method: "POST",
+      body: formdata,
+    })
+      .then((res) => res.json())
+      .then((imageRes) => {
+        console.log(imageRes);
+        if (imageRes.success) {
+          const imageUrl = imageRes.data.display_url;
+          const { name, price, recipe, category } = data;
+          const newItem = { name, price, recipe, category, image: imageUrl };
+          console.log("success", newItem);
+        }
+      });
 
     console.log(data);
   };
   console.log(errors);
   return (
     <>
-        <Helmet>
+      <Helmet>
         <title>Testy Taco | Add Item</title>
       </Helmet>
       <div className="py-6">
@@ -37,12 +54,12 @@ const AddItem = () => {
                 className="input input-bordered"
                 type="text"
                 placeholder="Recipe Name"
-                {...register("Recipe Name", { required: true })}
+                {...register("name", { required: true })}
               />
             </div>
             <div className="form-control">
               <select
-                {...register("Category", { required: true })}
+                {...register("category", { required: true })}
                 className="input input-bordered"
               >
                 <option value="salad">salad</option>
@@ -57,14 +74,14 @@ const AddItem = () => {
                 className="input input-bordered"
                 type="number"
                 placeholder="Price $"
-                {...register("Price", { required: true })}
+                {...register("price", { required: true })}
               />
             </div>
 
             <div className="form-contorl w-full">
               <textarea
                 className="textarea textarea-primary w-full"
-                {...register("RecipeDetails", { required: true })}
+                {...register("recipe", { required: true })}
                 placeholder="Recipe Details"
               />
             </div>

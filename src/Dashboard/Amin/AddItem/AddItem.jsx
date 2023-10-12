@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 const AddItem = () => {
   const imageApi = import.meta.env.VITE_IMAGE_API;
-  console.log(imageApi);
+ 
   const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageApi}`;
   const {
     register,
@@ -25,7 +25,7 @@ const AddItem = () => {
         if (imageRes.success) {
           const imageUrl = imageRes.data.display_url;
           const { name, price, recipe, category } = data;
-          const newItem = { name, price, recipe, category, image: imageUrl };
+          const newItem = { name, price:parseFloat(price), recipe, category, image: imageUrl };
           console.log("success", newItem);
         }
       });
@@ -62,6 +62,7 @@ const AddItem = () => {
                 {...register("category", { required: true })}
                 className="input input-bordered"
               >
+                <option disabled selected  >Pick One Category</option>
                 <option value="salad">salad</option>
                 <option value=" dessert"> dessert</option>
                 <option value=" drinks"> drinks</option>

@@ -42,10 +42,10 @@ const ManageItem = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {menu.map((item) => (
+            {menu.map((item, index) => (
               <tr key={item._id}>
                 <th>
-                  <label>1</label>
+                  <label>{index + 1}</label>
                 </th>
                 <td>
                   <div className="flex items-center space-x-3">

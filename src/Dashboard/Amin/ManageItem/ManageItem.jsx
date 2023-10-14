@@ -3,7 +3,12 @@ import useMenu from "./../../../Hooks/useMenu";
 import { FaFax, FaTrash } from 'react-icons/fa';
 
 const ManageItem = () => {
-  const [menu, loading] = useMenu();
+  const [menu, , refetch] = useMenu();
+  // menu item deleted function
+  const handleMenuItemDelete = (item)=>{
+    refetch();
+    console.log(item)
+  }
   return (
     <>
       <Helmet>
@@ -18,7 +23,7 @@ const ManageItem = () => {
 
       {/* table for menu item */}
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto w-full px-3">
         <table className="table">
           {/* head */}
           <thead>
@@ -55,13 +60,13 @@ const ManageItem = () => {
                   </div>
                 </td>
                 <td>{item.name}</td>
-                <td>{item.price}</td>
+                <td>${item.price}</td>
                 <td>
 
-                  <button className="btn btn-ghost btn-xs"><FaTrash></FaTrash></button>
+                  <button onClick={()=>handleMenuItemDelete(item)} className="btn btn-warning btn-xs"><FaTrash></FaTrash></button>
                 </td>
                 <td>
-                <button className="btn btn-ghost btn-xs">  <FaFax></FaFax></button>
+                <button className="btn btn-primary btn-xs">  <FaFax></FaFax></button>
                 
                 </td>
                 

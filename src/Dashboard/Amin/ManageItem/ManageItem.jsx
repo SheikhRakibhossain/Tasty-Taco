@@ -1,14 +1,43 @@
 import { Helmet } from "react-helmet-async";
 import useMenu from "./../../../Hooks/useMenu";
-import { FaFax, FaTrash } from 'react-icons/fa';
+import { FaFax, FaTrash } from "react-icons/fa";
+import useAxiousSecure from "./../../../Hooks/useAxiousSecure";
+import Swal from "sweetalert2";
 
 const ManageItem = () => {
   const [menu, , refetch] = useMenu();
+  const [axiosSecure] = useAxiousSecure();
   // menu item deleted function
-  const handleMenuItemDelete = (item)=>{
-    refetch();
-    console.log(item)
-  }
+  const handleMenuItemDelete = (item) => {
+    // axiosSecure.delete(`/menu/${item._id}`)
+    
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/menu/${item._id}`).then((data) => {
+          console.log("deleted menu data", data.data);
+          if (data.data.deletedCount > 0) {
+            refetch();
+            return Swal.fire(
+              "Deleted!",
+              "Your file has been deleted.",
+              "success"
+            );
+          }
+        });
+      }
+    });
+
+  
+    console.log(item);
+  };
   return (
     <>
       <Helmet>
@@ -62,14 +91,19 @@ const ManageItem = () => {
                 <td>{item.name}</td>
                 <td>${item.price}</td>
                 <td>
-
-                  <button onClick={()=>handleMenuItemDelete(item)} className="btn btn-warning btn-xs"><FaTrash></FaTrash></button>
+                  <button
+                    onClick={() => handleMenuItemDelete(item)}
+                    className="btn btn-warning btn-xs"
+                  >
+                    <FaTrash></FaTrash>
+                  </button>
                 </td>
                 <td>
-                <button className="btn btn-primary btn-xs">  <FaFax></FaFax></button>
-                
+                  <button className="btn btn-primary btn-xs">
+                    {" "}
+                    <FaFax></FaFax>
+                  </button>
                 </td>
-                
               </tr>
             ))}
           </tbody>

@@ -3,7 +3,7 @@ import './payment.css';
 import { useState } from "react";
 
 
-const CheckOut = () => {
+const CheckOut = ({price}) => {
 
   const stripe = useStripe();
   const elements = useElements();

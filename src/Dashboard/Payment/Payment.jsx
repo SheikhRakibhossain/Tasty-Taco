@@ -2,10 +2,15 @@ import { Helmet } from "react-helmet-async";
 import CheckOut from "./CheckOut";
 import { loadStripe} from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import useCart from './../../Hooks/useCart';
 
 
 const Payment = () => {
   const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_SECRET_PUBLISHABLE_KEY);
+
+  const [cart] = useCart();
+  const total = cart.reduce( (sum, item)=>sum+item.price, 0);
+  const price = parseFloat(total.toFixed(2))
 
   return (
     <>
@@ -24,7 +29,7 @@ const Payment = () => {
       {/* payment checkout form */}
       <div className="w-full">
         <Elements stripe={stripePromise}>
-          <CheckOut></CheckOut>
+          <CheckOut price={price}></CheckOut>
         </Elements>
       </div>
     </>

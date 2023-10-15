@@ -1,15 +1,22 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import './payment.css';
-import { useState } from "react";
+import "./payment.css";
+import { useEffect, useState } from "react";
+import useAxiousSecure from "../../Hooks/useAxiousSecure";
 
-
-const CheckOut = ({price}) => {
-
+const CheckOut = ({ price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState();
+  const { axiosSecure } = useAxiousSecure();
 
-  const handleSubmit = async (event)=>{
+  // price intent create
+  useEffect(() => {
+    axiosSecure.post("/client-payment-intent", { price }).then((res) => {
+      console.log(res.data);
+    });
+  }, [price, axiosSecure]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -28,17 +35,17 @@ const CheckOut = ({price}) => {
     }
 
     // Use your card Element with other Stripe.js APIs
-    const {error, paymentMethod} = await stripe.createPaymentMethod({
-      type: 'card',
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
       card,
     });
 
     if (error) {
-      setCardError(error.message)
-      console.log('[error]', error);
+      setCardError(error.message);
+      console.log("[error]", error);
     } else {
-      setCardError('')
-      console.log('[PaymentMethod] success data', paymentMethod);
+      setCardError("");
+      console.log("[PaymentMethod] success data", paymentMethod);
     }
   };
 
@@ -66,7 +73,9 @@ const CheckOut = ({price}) => {
             Pay
           </button>
         </form>
-        <div className="text-2xl text-red-500 text-center">{cardError && <p>{cardError}</p> }</div>
+        <div className="text-2xl text-red-500 text-center">
+          {cardError && <p>{cardError}</p>}
+        </div>
       </div>
     </>
   );

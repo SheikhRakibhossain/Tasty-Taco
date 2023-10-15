@@ -5,24 +5,26 @@ import useAxiousSecure from "../../Hooks/useAxiousSecure";
 import useAuth from "../../Hooks/useAuth";
 
 const CheckOut = ({ price }) => {
-  const {user} = useAuth()
+  const { user } = useAuth();
   const stripe = useStripe();
   const elements = useElements();
-  const [cardError, setCardError] = useState('');
-  const { axiosSecure } = useAxiousSecure();
+  const [cardError, setCardError] = useState("");
+  const [axiosSecure] = useAxiousSecure();
   const [clientSecret, setClientSecret] = useState("");
-
+  const [proceccing, setProceccing] = useState();
+  const [ tranjectionId, setTranhjectionId] = useState('');
 
   // price intent create
+
   useEffect(() => {
-    axiosSecure.post("/client-payment-intent", { price }).then((res) => {
-      console.log(res.data.clientSecret);
-      setClientSecret(res.data.clientSecret)
-    });
-
-
-  }, [price, axiosSecure]);
-
+    if (price > 0) {
+      axiosSecure.post("/create-payment-intent", { price }).then((res) => {
+        console.log(res.data.clientSecret);
+        setClientSecret(res.data.clientSecret);
+      });
+    }
+    console.log(price);
+  }, []);
 
   // handle submit stripe form
   const handleSubmit = async (event) => {
@@ -56,29 +58,29 @@ const CheckOut = ({ price }) => {
       setCardError("");
       console.log("[PaymentMethod] success data", paymentMethod);
     }
-// load form https://stripe.com/docs/js/payment_intents/confirm_card_payment
-
-    const {paymentIntent, error:confirmError} = await stripe.confirmCardPayment(
-      clientSecret,
-      {
+    // load form https://stripe.com/docs/js/payment_intents/confirm_card_payment
+setProceccing(true)
+    const { paymentIntent, error: confirmError } =
+      await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: card,
           billing_details: {
-            email:user?.email || "anonimous",
+            email: user?.email || "anonimous",
             name: user?.displayName || "anonimous",
           },
         },
-      },
-    );
-    if(confirmError){
+      });
+    if (confirmError) {
       // setCardError(confirmError)
-      console.log("I am a confrim error",confirmError)
+      console.log("I am a confrim error", confirmError);
     }
-    console.log("I am payment intent", paymentIntent)
+    console.log("I am payment intent", paymentIntent);
 
-
-
-
+    if (paymentIntent.status === "succeeded") {
+      setProceccing(false)
+      setTranhjectionId( paymentIntent.id)
+      // const payId = paymentIntent.id;
+    }
   };
 
   return (
@@ -101,12 +103,15 @@ const CheckOut = ({ price }) => {
               },
             }}
           />
-          <button type="submit" disabled={!stripe || !clientSecret}>
+          <button type="submit" disabled={!stripe || !clientSecret || proceccing}>
             Pay
           </button>
         </form>
         <div className="text-2xl text-red-500 text-center">
           {cardError && <p>{cardError}</p>}
+        </div>
+        <div className="text-2xl text-red-500 text-center">
+          {tranjectionId && <p>Payment has succeeded</p>}
         </div>
       </div>
     </>

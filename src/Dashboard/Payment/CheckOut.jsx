@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import useAxiousSecure from "../../Hooks/useAxiousSecure";
 import useAuth from "../../Hooks/useAuth";
 
-const CheckOut = ({ price }) => {
+const CheckOut = ({ price, cart }) => {
   const { user } = useAuth();
+
   const stripe = useStripe();
   const elements = useElements();
   const [cardError, setCardError] = useState("");
@@ -24,7 +25,7 @@ const CheckOut = ({ price }) => {
       });
     }
     console.log(price);
-  }, []);
+  }, [price, axiosSecure]);
 
   // handle submit stripe form
   const handleSubmit = async (event) => {
@@ -80,6 +81,25 @@ setProceccing(true)
       setProceccing(false)
       setTranhjectionId( paymentIntent.id)
       // const payId = paymentIntent.id;
+
+      // save info for the client
+      const payment = {
+        email:user?.email,
+        price,
+        tranjectionId:paymentIntent.id,
+        quantity:cart.length,
+        items:cart.map(item=>item._id),
+        itemsName: cart.map(item=>item.name)
+      }
+
+      axiosSecure.post('/payments',payment).then(res=>{
+        console.log('payout user data and shop details',res.data)
+        if(res.data.insertedId){
+          // todo
+        }
+
+      })
+
     }
   };
 
@@ -110,7 +130,7 @@ setProceccing(true)
         <div className="text-2xl text-red-500 text-center">
           {cardError && <p>{cardError}</p>}
         </div>
-        <div className="text-2xl text-red-500 text-center">
+        <div className="text-2xl text-green-500 text-center">
           {tranjectionId && <p>Payment has succeeded</p>}
         </div>
       </div>

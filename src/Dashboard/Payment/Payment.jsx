@@ -29,7 +29,7 @@ const Payment = () => {
       {/* payment checkout form */}
       <div className="w-full">
         <Elements stripe={stripePromise}>
-          <CheckOut price={price}></CheckOut>
+          <CheckOut cart={cart} price={price}></CheckOut>
         </Elements>
       </div>
     </>

@@ -82,11 +82,11 @@ const Register = () => {
               alt=""
             />
           </div>
-          <div className="w-1/2 card flex-shrink-0  max-w-sm shadow-2xl bg-base-100 py-8">
-            <form onSubmit={handleRegister} className="card-body">
-              <div className="form-control">
+          <div className="flex-shrink-0  max-w-sm shadow-2xl bg-base-100 py-4">
+            <form onSubmit={handleRegister} className="card-body m-0">
+              <div className="form-control ">
                 <label className="label">
-                  <span className="label-text">Name</span>
+                  <span className="label-text"></span>
                 </label>
                 <input
                   type="text"
@@ -98,7 +98,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Phone</span>
+                  <span className="label-text"></span>
                 </label>
                 <input
                   type="number"
@@ -110,7 +110,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Photo URL</span>
+                  <span className="label-text"></span>
                 </label>
                 <input
                   type="url"
@@ -122,7 +122,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Email</span>
+                  <span className="label-text"></span>
                 </label>
                 <input
                   type="email"
@@ -134,7 +134,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Password</span>
+                  <span className="label-text"></span>
                 </label>
                 <input
                   type="password"

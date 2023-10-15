@@ -87,15 +87,18 @@ setProceccing(true)
         email:user?.email,
         price,
         tranjectionId:paymentIntent.id,
+        date: new Date(),
+        orderStatus:"service pending",
         quantity:cart.length,
-        items:cart.map(item=>item._id),
+        cartItems:cart.map(item=>item._id),
+        foodItems:cart.map(item=>item.foodId),
         itemsName: cart.map(item=>item.name)
       }
 
       axiosSecure.post('/payments',payment).then(res=>{
         console.log('payout user data and shop details',res.data)
-        if(res.data.insertedId){
-          // todo
+        if(res.data.insertResult){
+          // todo  
         }
 
       })

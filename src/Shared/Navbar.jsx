@@ -5,10 +5,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaShoppingBag } from "react-icons/fa";
 import useCart from "../Hooks/useCart";
+import useAdmin from "../Hooks/useAdmin";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [cart] = useCart()
+  const [cart] = useCart();
+  const [isAdmin] = useAdmin();
 
   const handleLogout = () => {
     logOut(user)
@@ -68,7 +70,7 @@ const Navbar = () => {
         <NavLink to="/pay">Pay</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        {isAdmin ?<><NavLink to="/dashboard/admin-home">Dashboard</NavLink></>:<><NavLink to="/dashboard/user-home">Dashboard</NavLink></>}
       </li>
       {/* cart */}
       <Link to="/dashboard/my-cart" className="btn btn-sm bg-white">
@@ -80,7 +82,7 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar sm:justify-between bg-base-100 sticky top-0">
+      <div className="navbar sm:justify-between bg-base-100 sticky top-0 z-50">
         <div className="navbar-start">
           <h2 className="text-3xl font-semibold animate-pulse sm:text-end">
             Testy Taco

@@ -48,12 +48,12 @@ const Navbar = () => {
       {user ? (
         <>
           <li>
-            <button
+            <Link
               onClick={handleLogout}
-              className="border border-purple-500 px-3 py-2 text-red-500 font-semibold"
+              className=" text-indigo-700"
             >
               Log Out
-            </button>
+            </Link>
           </li>
         </>
       ) : (
@@ -69,9 +69,9 @@ const Navbar = () => {
       <li>
         <NavLink to="/pay">Pay</NavLink>
       </li>
-      <li>
-        {isAdmin ?<><NavLink to="/dashboard/admin-home">Dashboard</NavLink></>:<><NavLink to="/dashboard/user-home">Dashboard</NavLink></>}
-      </li>
+      
+        {isAdmin ? <li><NavLink to="/dashboard/admin-home">Dashboard</NavLink></li>: <li><NavLink to="/dashboard/user-home">Dashboard</NavLink></li>}
+     
       {/* cart */}
       <Link to="/dashboard/my-cart" className="btn btn-sm bg-white">
         

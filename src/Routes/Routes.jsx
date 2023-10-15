@@ -11,13 +11,12 @@ import PrivateRoute from "../Hooks/PrivateRoute";
 import Dashboard from "../Dashboard/Dashboard";
 import MyCart from "../Dashboard/MyCart/MyCart";
 import AddItem from './../Dashboard/Amin/AddItem/AddItem';
-import Admin from './../Dashboard/Amin/Admin/Admin';
 import AllUsers from './../Dashboard/Amin/AllUsers/AllUsers';
 import ManageItem from "../Dashboard/Amin/ManageItem/ManageItem";
 import ManageBooking from './../Dashboard/Amin/ManageBooking/ManageBooking';
 import AdminRoute from "./AdminRoute";
 import Payment from "../Dashboard/Payment/Payment";
-import AdminHome from "../Dashboard/Amin/AdminHome/AdminHome";
+import AdminHome from "../Dashboard/Amin/Admin/AdminHome";
 import UserHome from "../Dashboard/UserHome/UserHome";
 
 const router = createBrowserRouter([
@@ -71,17 +70,17 @@ const router = createBrowserRouter([
       children:[
         {
           path:'admin-home',
-          elementL:<AdminRoute><AdminHome/></AdminRoute>
+          element:<AdminRoute><AdminHome/></AdminRoute>
          },
       
         {
           path:'add-item',
           element:<AdminRoute><AddItem/></AdminRoute>
         },
-        {
-          path:'admin',
-          element:<Admin/>
-        },
+        // {
+        //   path:'admin',
+        //   element:<Admin/>
+        // },
         {
           path:'all-users',
           element:<AdminRoute><AllUsers/></AdminRoute>
@@ -105,7 +104,7 @@ const router = createBrowserRouter([
         },
         {
           path:'user-home',
-          elementL:<UserHome/>
+          element:<UserHome/>
          },
       ]
     

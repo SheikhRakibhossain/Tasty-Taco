@@ -16,7 +16,7 @@ const AdminHome = () => {
 
   return (
     <>
-      <h2>I am main admin page</h2>
+      <h2 className="text-xl font-semibold text-center">I am main admin page</h2>
       <p className="text-2xl font-bold text-center">Admin: {user?.displayName}</p>
 
       <div className="stats shadow">

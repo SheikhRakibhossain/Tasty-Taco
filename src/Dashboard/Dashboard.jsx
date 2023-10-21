@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   return (
     <>
-      <div className="drawer lg:drawer-open -m-4">
+      <div className="drawer lg:drawer-open top-0">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-normal">
           {/* Page content here */}
@@ -37,13 +37,13 @@ const Dashboard = () => {
 
           <Outlet />
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side bg-base-300">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-base-300 text-base-content">
+          <ul className="menu p-x-4 w-80 min-h-full text-base-content">
             {/* Sidebar content here */}
             {isAdmin ? (
               <>
